@@ -48,6 +48,7 @@ const actions = {
     axios.get(uri).then(res => {
       let post = res.data.data
       commit('addPost', post)
+      console.log(post)
     })
   }
 }
