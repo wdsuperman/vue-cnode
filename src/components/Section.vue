@@ -35,7 +35,7 @@ export default {
       return this.$store.state.title.all
     },
     posts(){
-      return this.$store.state.title.posts[0]
+      return this.$store.state.title.posts
     }
   }
 }

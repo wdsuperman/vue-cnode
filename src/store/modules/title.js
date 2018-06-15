@@ -27,7 +27,7 @@ const state = {
 }
 const mutations = {
   addPost(state ,post){
-    state.posts.push(post)
+    state.posts=post
   },
   addTabs(state,tab){
     state.tabs = tab
@@ -42,8 +42,13 @@ const actions = {
       commit('addPost', post)
     })
   },
-  addTabs({commit},{tab}){
+  addTabs({commit},{tab}){ 
     commit('addTabs', tab)
+    const uri =`https://cnodejs.org/api/v1/topics/?tab=${state.tabs}`
+    axios.get(uri).then(res => {
+      let post = res.data.data
+      commit('addPost', post)
+    })
   }
 }
 export default {
