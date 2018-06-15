@@ -1,3 +1,4 @@
+import axios from 'axios'
 const state = {
   all: [
     {
@@ -20,9 +21,33 @@ const state = {
       type:'job',
       name:'招聘'
     }
-  ]
+  ],
+  posts:[],
+  tabs:'all'
 }
-
+const mutations = {
+  addPost(state ,post){
+    state.posts.push(post)
+  },
+  addTabs(state,tab){
+    state.tabs = tab
+    console.log(state.tabs)
+  }
+}
+const actions = { 
+  addPost({commit}){
+    const uri =`https://cnodejs.org/api/v1/topics/?tab=${state.tabs}`
+    axios.get(uri).then(res => {
+      let post = res.data.data
+      commit('addPost', post)
+    })
+  },
+  addTabs({commit},{tab}){
+    commit('addTabs', tab)
+  }
+}
 export default {
-  state
+  state,
+  actions,
+  mutations
 }

@@ -2,12 +2,12 @@
   <body>
     <div class="wrap">
       <div class="top">
-        <div  v-for="title in titles" :key="title.type" class="section-top" @click="xx(title.type)">
+        <div  v-for="title in titles" :key="title.type" class="section-top" @click="type(title.type)">
           {{title.name}}
         </div>
       </div>
       <ul>
-        <li v-for="t in title" :key="t.id">
+        <li v-for="t in posts" :key="t.id">
           {{t.title}}
         </li>
       </ul>
@@ -20,39 +20,28 @@ import axios from 'axios'
 export default {
   name: 'Section',
   data:()=>({
-    title:'',
-    tab:''
+    tab:'job'
   }),
-  created:function(){
-    const uri = `https://cnodejs.org/api/v1/topics/?tab=all`
-    axios.get(uri).then(res => {
-      this.title = res.data.data
-      console.log(this.title)
-    })
+  methods:{
+    type(tab){
+      this.$store.dispatch({ type: 'addTabs',tab})
+    }
   },
-  mounted:function(){
-    const uri = `https://cnodejs.org/api/v1/topics/?tab=${this.tab}`
-    axios.get(uri).then(res => {
-      this.title = res.data.data
-      console.log(this.title)
-    })
+  created: function () {
+    this.$store.dispatch({ type: 'addPost' })
   },
   computed:{
     titles(){
       return this.$store.state.title.all
-    }
-  },
-  methods:{
-    xx(i){
-      this.tab = i
-      console.log(this.tab)
+    },
+    posts(){
+      return this.$store.state.title.posts[0]
     }
   }
 }
 </script>
 
 <style scoped>
-  
   .top{
     display: flex;
     width: 90%;
