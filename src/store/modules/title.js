@@ -31,7 +31,6 @@ const mutations = {
   },
   addTabs(state,tab){
     state.tabs = tab
-    console.log(state.tabs)
   }
 }
 const actions = { 

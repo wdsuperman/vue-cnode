@@ -8,14 +8,14 @@
       </div>
       <ul class="post">
         <li class="list" v-for="t in posts" :key="t.id" v-if="t.good || t.top || t.tab">
-          <img :title='t.author.loginname' style="width:30px;height:30px" :src='t.author.avatar_url' alt="">
+          <router-link :to="`/user/${t.author.loginname}`"><img :title='t.author.loginname' style="width:30px;height:30px" :src='t.author.avatar_url' alt=""></router-link>
           <span class="hf">
             <span style="color: #9e78c0;font-size: 14px;" title="回复数">{{t.reply_count}}</span>
           /
           <span style="color: #b4b4b4;font-size: 14px;" title="点击数">{{t.visit_count}}</span>
           </span>
           <span :class="t.good || t.top ? 'tab ' : 'tab active' ">{{t.good ? '精华':''||t.top ? '置顶':''||get(t.tab)}}</span>
-          <span :title="t.title" class="post-title">{{t.title}}</span>
+          <router-link :to="`/topic/${t.id}`"><span :title="t.title" class="post-title">{{t.title}}</span></router-link>
         </li>
       </ul>
     </div>
@@ -31,7 +31,6 @@ export default {
       this.$store.dispatch({ type: 'addTabs',tab})
     },
     get(tab){
-      console.log(tab)
       switch (tab) {
         case 'share':
           '分享'
@@ -85,6 +84,7 @@ export default {
     margin:0 10px;
     color:#80bd01;
     padding:1px 2px;
+    cursor: pointer;
   }
   .bian{
     margin:0 10px;

@@ -1,20 +1,19 @@
 <template>
   <div id="app">
     <Header />
-    <body class="title-section-top">
-      <Section />
-    </body>
+    <div class="title-section-top">
+      <router-view></router-view>
+      
+    </div>
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
-import Section from './components/Section.vue'
 
 export default {
   name: 'app',
   components: {
-    Section,
     Header
   }
 }
