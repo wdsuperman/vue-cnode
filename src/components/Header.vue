@@ -1,7 +1,10 @@
 <template>
   <div class="header">
     <div class="top">
-      <img src="https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg" alt="">
+      <router-link class="logo" to='/'>
+        <img src="https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg" alt="">
+      </router-link>
+      <input type="text">
     </div>
   </div>
 </template>
@@ -20,7 +23,7 @@ export default {
     display: flex;
     align-items: center;
   }
-  .header>.top>img{
+  .header>.top>.logo>img{
     width: 120px;
   }
   .top{
@@ -31,5 +34,9 @@ export default {
     width: 90%;
     margin: auto;
     padding: 5px;
+    display: flex;
+  }
+  .logo{
+    display: block;
   }
 </style>

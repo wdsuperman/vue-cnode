@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h1>
-      {{topic.title}}
-    </h1>
-    <div v-html="topic.content">
+    <div class="top">
+      <h1>
+        {{topic.title}}
+      </h1>
+    </div>
+    <div class="topic" v-html="topic.content">
     </div>
   </div>
 </template>
@@ -26,6 +28,16 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .topic{
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+  .top{
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+  }
 </style>

@@ -7,8 +7,11 @@
         </div>
       </div>
       <ul class="post">
-        <li class="list" v-for="t in posts" :key="t.id" v-if="t.good || t.top || t.tab">
-          <router-link :to="`/user/${t.author.loginname}`"><img :title='t.author.loginname' style="width:30px;height:30px" :src='t.author.avatar_url' alt=""></router-link>
+        <li class="wat" v-if="posts.length === 0">
+          请稍等
+        </li>
+        <li class="list" v-for="t in posts" :key="t.id" v-else >
+           <router-link :to="`/user/${t.author.loginname}`"><img :title='t.author.loginname' style="width:30px;height:30px" :src='t.author.avatar_url' alt=""></router-link>
           <span class="hf">
             <span style="color: #9e78c0;font-size: 14px;" title="回复数">{{t.reply_count}}</span>
           /
@@ -131,4 +134,16 @@ export default {
   .tive{
   font-size: 100px;
 }
+  .wat{
+    padding-bottom: 1000px;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  a:visited{
+    color:#888;
+  }
+  a{
+    color:#333;
+  }
 </style>
